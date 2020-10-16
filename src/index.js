@@ -1,16 +1,13 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-require('dotenv/config');
+import express from 'express';
+import mongoose from 'mongoose'
+import dotenv from 'dotenv';
+import postsRoute from './routes/posts.js';
+import authRoute from './routes/auth.js';
 
-
-
-// import routes
-const postsRoute = require('./routes/posts');
-const authRoute = require('./routes/auth');
+dotenv.config();
 
 // Routes middlewares
-
+const app = express();
 app.use(express.json());
 
 app.use('/posts', postsRoute);
@@ -19,7 +16,7 @@ app.use('/api/user',authRoute);
 
 // Routes 
 app.get('/',(req,res)=>{
-    res.send('we are on home');
+    res.json({msg:'we are on home'});
 });
 
 // connect to DB
@@ -33,4 +30,4 @@ mongoose.connect(
 })
 
 // start listening to the server
-app.listen(3000);
+app.listen(3000, ()=>console.log('server started successfully'));

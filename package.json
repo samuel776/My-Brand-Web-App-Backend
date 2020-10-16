@@ -1,10 +1,11 @@
 {
   "name": "my-brand-web-app-backend",
+  "type": "module",
   "version": "1.0.0",
   "description": "My brand web app backend",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon src"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   "homepage": "https://github.com/samuel776/My-Brand-Web-App-Backend#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "nodemon": "^2.0.4"
   }
