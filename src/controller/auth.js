@@ -1,6 +1,8 @@
-import User from "../routes/auth.js";
+import User from "../modals/userModal.js";
 import {registerValidation, loginValidation} from'../routes/validation.js';
 import dotenv from 'dotenv';
+import bcrypt from'bcryptjs';
+import jwt from'jsonwebtoken';
 
 dotenv.config();
 

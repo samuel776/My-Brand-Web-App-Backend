@@ -1,7 +1,6 @@
 import express from'express';
 import User from'../modals/userModal.js';
-import bcrypt from'bcryptjs';
-import jwt from'jsonwebtoken';
+
 import userController from '../controller/auth.js';
 
 const router = express.Router();
