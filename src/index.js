@@ -3,12 +3,14 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv';
 import postsRoute from './routes/posts.js';
 import authRoute from './routes/auth.js';
+import cors from 'cors';
 
 dotenv.config();
 
 // Routes middlewares
 const app = express();
 app.use(express.json());
+app.use(cors())
 
 app.use('/posts', postsRoute);
 app.use('/api/user',authRoute);
@@ -30,4 +32,5 @@ mongoose.connect(
 })
 
 // start listening to the server
-app.listen(3000, ()=>console.log('server started successfully'));
+ const port = process.env.PORT || 3000
+app.listen(port, ()=>console.log('server started successfully'));
