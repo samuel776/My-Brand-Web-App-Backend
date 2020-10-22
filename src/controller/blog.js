@@ -1,5 +1,6 @@
 import Post from '../modals/post.js';
 import {blogValidation} from '../routes/validation.js' 
+import Comments from '../modals/commentsModal.js'
 
 export default {
     getAll: async (req, res)=>{
@@ -17,6 +18,8 @@ export default {
             const {_id}= req.params
             const post = await Post.findById({_id})
             if(!post) return res.status(404).json({msg: 'No post found'})
+             post.views += 1
+            post.save()
             res.status(200).json(post)
         } catch (error) {
             res.status(500).json({error: error.message})
@@ -56,6 +59,22 @@ export default {
             }, {new: true});
             res.status(200).json({msg: 'post updated successfully', updatedPost})
         } catch (error) {
+            res.status(500).json({error: error.message})
+        }
+    },
+    createComment: async (req,res) =>{
+        try {
+            const {_id} = req.params;
+            const {name, email, description } = req.body;
+            const createComment = await Comments.create({name, email, description})
+            const foundPost = await Post.findById(_id);
+    if (!foundPost) errorRes(res, 404, 'no post found with that id');
+    foundPost.comments.push(createComment._id);
+   foundPost.commentsNumber += 1;
+    await foundPost.save();
+
+            res.status(200).json({msg: 'commented successfully'})
+        } catch(error){
             res.status(500).json({error: error.message})
         }
     }
