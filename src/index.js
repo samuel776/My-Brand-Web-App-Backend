@@ -5,6 +5,7 @@ import postsRoute from './routes/posts.js';
 import authRoute from './routes/auth.js';
 import cors from 'cors';
 
+
 dotenv.config();
 
 // Routes middlewares
@@ -34,3 +35,5 @@ mongoose.connect(
 // start listening to the server
  const port = process.env.PORT || 3000
 app.listen(port, ()=>console.log('server started successfully'));
+export default app;
+
