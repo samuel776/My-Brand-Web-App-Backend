@@ -52,7 +52,7 @@ export const blogValidation = (data) =>{
         "string.empty": 'please fill in the title of article',
         'string.min': 'title property should be at least {#limit} char'
     }),
-    description: Joi.string().min(100).required().messages({
+    description: Joi.string().min(10).required().messages({
         'any.required': 'description is required',
         "string.empty": 'please fill in the description',
         'string.min': 'description property should be at least {#limit} char'

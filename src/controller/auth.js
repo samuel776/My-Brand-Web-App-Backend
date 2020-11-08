@@ -30,7 +30,7 @@ export default {
         });
         try {
            const savedUser = await user.save();
-           res.send({user: user._id});
+           res.status(201).send({user: user._id});
         } catch (error) {
         res.status(400).send(error);
         }

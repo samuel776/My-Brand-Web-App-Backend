@@ -1,9 +1,11 @@
+import '@babel/polyfill'
 import express from 'express';
 import mongoose from 'mongoose'
 import dotenv from 'dotenv';
 import postsRoute from './routes/posts.js';
 import authRoute from './routes/auth.js';
 import cors from 'cors';
+
 
 dotenv.config();
 
@@ -23,7 +25,9 @@ app.get('/',(req,res)=>{
 
 // connect to DB
 mongoose.connect(
-    process.env.DB_CONNECTION, 
+    process.env.NODE_ENV==="test"?
+      process.env.DB_CONNECTION_TEST:
+    process.env.DB_CONNECTION,
    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false } ,
 ).then(()=>{
     console.log('Connected to database')
@@ -34,3 +38,5 @@ mongoose.connect(
 // start listening to the server
  const port = process.env.PORT || 3000
 app.listen(port, ()=>console.log('server started successfully'));
+export default app;
+

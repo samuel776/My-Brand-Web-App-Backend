@@ -9,7 +9,7 @@ export default (req,res, next)=>{
         req.user = verified;
         next();
     } catch (error) {
-       res.status(400).json({msg:'Invid Token'});
+       res.status(400).json({msg:'Invalid Token'});
     }
 }
     

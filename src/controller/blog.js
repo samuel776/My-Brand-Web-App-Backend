@@ -1,12 +1,12 @@
 import Post from '../modals/post.js';
 import {blogValidation} from '../routes/validation.js' 
-import Comments from '../modals/commentsModal.js'
+import Comments from '../modals/commentsModal.js';
 
 export default {
     getAll: async (req, res)=>{
         try {
             const posts = await Post.find()
-            if(!posts) return res.status(404).json({msg: 'No post found'})
+            if(!posts || posts.length === 0 ) return res.status(404).json({msg: 'No post found'})
             res.status(200).json(posts)
         } catch (error) {
             res.status(500).json({error: error.message})
@@ -22,7 +22,7 @@ export default {
             post.save()
             res.status(200).json(post)
         } catch (error) {
-            res.status(500).json({error: error.message})
+           return res.status(500).json({error: error.message})
         }
     },
 
@@ -35,7 +35,7 @@ export default {
          const savedPost = await newPost.save();
          res.status(201).json(savedPost)
         } catch (error) {
-           res.status(500).json({error: error.message}) 
+           return res.status(500).json({error: error.message}) 
         }
      },
 
@@ -45,7 +45,7 @@ export default {
             const deletedPost = await Post.findOneAndRemove({_id});
             res.status(200).json({mgs: 'post deleted successfully', deletedPost})
         } catch (error) {
-            res.status(500).json({error: error.message})
+            return res.status(500).json({error: error.message})
         }
     },
 
@@ -59,7 +59,7 @@ export default {
             }, {new: true});
             res.status(200).json({msg: 'post updated successfully', updatedPost})
         } catch (error) {
-            res.status(500).json({error: error.message})
+            return res.status(500).json({error: error.message})
         }
     },
     createComment: async (req,res) =>{
@@ -75,7 +75,7 @@ export default {
 
             res.status(200).json({msg: 'commented successfully'})
         } catch(error){
-            res.status(500).json({error: error.message})
+            return res.status(500).json({error: error.message})
         }
     }
 } 
