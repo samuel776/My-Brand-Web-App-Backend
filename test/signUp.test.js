@@ -14,7 +14,7 @@ describe("signUp", () =>{
     done();
    }) 
   })
-  it("should create an account and return to 201 stutus",(done) =>{
+  it("should create an account and return to 201 status",(done) =>{
     const user = { 
       name: "testname",
       email:"test@gmail.com",
@@ -29,7 +29,36 @@ chai.request(app)
    res.body.should.be.a("object");
    
    done();
- })
-  })
-  it("")
-})
+ });
+  });
+
+  it("should not create an account without a name property and return to 400 status",(done) =>{
+    const user = { 
+      email:"test@gmail.com",
+      password:"password"
+    }
+chai.request(app)
+ .post("/api/user/register")
+ .send(user)
+ .end((error, res) =>{
+   if(error) done(error);
+   res.should.have.status(400);
+   done();
+ });
+  });
+  it("should not create an account without an email  property and return to 400 status",(done) =>{
+    const user = { 
+      name: "testname",
+      password:"password"
+    }
+chai.request(app)
+ .post("/api/user/register")
+ .send(user)
+ .end((error, res) =>{
+   if(error) done(error);
+   res.should.have.status(400);
+   done();
+ });
+  });
+  
+});

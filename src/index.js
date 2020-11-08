@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import express from 'express';
 import mongoose from 'mongoose'
 import dotenv from 'dotenv';
@@ -24,7 +25,9 @@ app.get('/',(req,res)=>{
 
 // connect to DB
 mongoose.connect(
-    process.env.DB_CONNECTION, 
+    process.env.NODE_ENV==="test"?
+      process.env.DB_CONNECTION_TEST:
+    process.env.DB_CONNECTION,
    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false } ,
 ).then(()=>{
     console.log('Connected to database')
