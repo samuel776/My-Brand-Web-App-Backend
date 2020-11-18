@@ -1,0 +1,2 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/7b39df67e818a4ba2167/maintainability)](https://codeclimate.com/github/samuel776/My-Brand-Web-App-Backend/maintainability)
+[![Build Status](https://travis-ci.org/samuel776/My-Brand-Web-App-Backend.svg?branch=Develop)](https://travis-ci.org/samuel776/My-Brand-Web-App-Backend)
