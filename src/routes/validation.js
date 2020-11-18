@@ -26,24 +26,7 @@ export const registerValidation = (data) => {
   
   return schema.validate(data);
 };
-// Login validation
-export const loginValidation = (data) => {
-  const schema = Joi.object({
-    
-    email: Joi.string().min(6).lowercase().required().email().messages({
-      "any.required": "email is required",
-      "string.empty": "please fill in your email",
-      "string.min": "email property should be at least {#limit} char",
-      "string.lowercase": "email should be in lowercase",
-    }),
-    password: Joi.string().min(6).required().strict().messages({
-      "any.required": "Password is required",
-      "string.empty": "please fill in your Password",
-      "string.min": "Password property should be at least {#limit} char",
-    }),
-  });
-  return schema.validate(data);
-};
+
 // blog validation
 export const blogValidation = (data) =>{
   const schema = Joi.object({
